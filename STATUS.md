@@ -46,6 +46,7 @@
 - **로컬 서버 및 브라우저 UI 점검**:
   - `uvicorn api.index:app --host 127.0.0.1 --port 8000` 기동 후 `/api/health` 및 `/` 200 OK 확인
   - 통합 브라우저에서 메인 폼, 빠른 예시 칩, `문제 출제` ↔ `갤러리` 탭 전환, 검색/필터/JSON 버튼 렌더링 정상 확인
-- **실제 AI 연동 및 브라우저 E2E 검증**:
+- **Vercel 배포 및 작동 점검**:
+  - `https://ai-quiz-studio.vercel.app` 첫 배포 시 `api/index.py` 상대 임포트(`FUNCTION_INVOCATION_FAILED`) 이슈 발견 → 절대 임포트(`sys.path` 보정) 및 `VERCEL` 환경 분기 수정 적용
   - `env_local.txt` (`AI_ENDPOINT`, `AI_API_KEY`, `AI_DEPLOYMENT=gpt-6-luna`) 연동 및 `temperature` 미지원 모델 대응(`api/ai_service.py` 수정)
   - 브라우저에서 `수학 · 이차방정식` 5문항 실제 생성, `갤러리에 저장`, `채점하고 해설 보기` 정상 동작 확인

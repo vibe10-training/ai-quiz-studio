@@ -1,12 +1,18 @@
+import os
+import sys
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from .ai_service import AIServiceError, generate_quiz
-from .config import PROJECT_ROOT, get_ai_settings
-from .models import QuizGenerateRequest, QuizGenerateResponse
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from api.ai_service import AIServiceError, generate_quiz
+from api.config import PROJECT_ROOT, get_ai_settings
+from api.models import QuizGenerateRequest, QuizGenerateResponse
 
 
 app = FastAPI(title="AI Quiz Studio API", version="1.0.0")
@@ -39,9 +45,9 @@ async def create_quiz(req: QuizGenerateRequest):
         raise HTTPException(status_code=exc.status_code, detail=exc.message)
 
 
-# Local execution support: serve static files from public/ when running via uvicorn
+# Local execution support: serve static files from public/ when running locally
 PUBLIC_DIR: Path = PROJECT_ROOT / "public"
-if PUBLIC_DIR.is_dir():
+if not os.environ.get("VERCEL") and PUBLIC_DIR.is_dir():
     app.mount("/static", StaticFiles(directory=str(PUBLIC_DIR)), name="static")
 
     @app.get("/")

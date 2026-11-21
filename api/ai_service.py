@@ -3,8 +3,8 @@ import re
 from typing import Any, Dict, List
 import httpx
 
-from .config import AISettings, get_ai_settings
-from .models import QuizGenerateRequest, QuizGenerateResponse, QuizQuestion
+from api.config import AISettings, get_ai_settings
+from api.models import QuizGenerateRequest, QuizGenerateResponse, QuizQuestion
 
 
 class AIServiceError(Exception):
