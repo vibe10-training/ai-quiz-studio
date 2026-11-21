@@ -11,7 +11,7 @@
 | **Phase 2** | 퀴즈 출제, 풀이, 채점, 해설 UI 구현 | 완료 | 객관식/주관식 출제, 채점 결과, 상세 해설 및 미리보기 토글 |
 | **Phase 3** | 갤러리 메뉴 (저장/조회/필터/재풀이/삭제) 구현 | 완료 | `localStorage` 영속화, 검색·유형 필터, JSON 내보내기/가져오기 |
 | **Phase 4** | 로컬 동작 점검, 빌드 및 오류 체크 | 완료 | `pytest` 6/6 통과, 실제 `gpt-6-luna` 5문항 생성·채점·갤러리 저장 E2E 검증 완료 |
-| **Phase 5** | GitHub 업로드 및 Vercel 배포 연동 | 진행중 | 로컬 Git 커밋 완료 (`main`). `quiz_prj`용 새 GitHub 저장소 URL 연결 후 푸시 및 Vercel 연동 필요 |
+| **Phase 5** | GitHub 업로드 및 Vercel 배포 연동 | 진행중 | `https://github.com/vibe10-training/ai-quiz-studio` 생성 및 `origin` 연결 완료. `git push -u origin main` 후 Vercel 연동 진행 |
 
 ## 2. 생성된 파일 목록
 - **문서**
